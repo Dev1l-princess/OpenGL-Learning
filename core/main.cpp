@@ -8,7 +8,11 @@ int main() {
         return -1;
     }
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGL Window", nullptr, nullptr);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
+    GLFWwindow* window = glfwCreateWindow(1024, 768, "My first window", nullptr, nullptr);
     if (!window) {
         std::cerr << "Ошибка создания окна" << std::endl;
         glfwTerminate();
@@ -24,7 +28,7 @@ int main() {
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
-
+        glfwSetWindowShouldClose(window, glfwGetKey(window, GLFW_KEY_ESCAPE));
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
